@@ -40,7 +40,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "angularStarterTemplate",
+            "prefix": "",
             "style": "camelCase"
           }
         ],
@@ -48,7 +48,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "angular-starter-template",
+            "prefix": "",
             "style": "kebab-case"
           }
         ]

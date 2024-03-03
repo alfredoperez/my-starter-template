@@ -1,14 +1,25 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { PageContainerComponent } from './shared/ui';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
-  selector: 'angular-starter-template-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  imports: [PageContainerComponent, RippleModule],
+  selector: 'starter-root',
+  template: `
+   <div class="layout-container">
+   
+   <button 
+          pButton
+          pRipple
+          class="p-button-secondary"
+      
+          label="Add User"
+        ></button>
+   <page-container/>
+   
+</div>
+  `,
 })
-export class AppComponent {
-  title = 'angular-starter-template';
-}
+export class AppComponent {}
