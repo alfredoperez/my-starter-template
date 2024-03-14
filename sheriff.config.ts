@@ -5,14 +5,15 @@ export const sheriffConfig: SheriffConfig = {
   tagging: {
     'src/app': {
       'shared/<type>': 'shared:<type>',
+      'shared/ui/layout': ['shared:ui', 'type:<type>'],
       '<domain>/<type>': ['domain:<domain>', 'type:<type>'],
     },
   },
   depRules: {
     root: ['type:containers', 'shared:*', 'domain:*'],
-    'domain:*': sameTag,
+    'domain:*': [sameTag, 'shared'],
     'type:data': ['shared:data'],
-
-    // 'type:ui': ['type:model', 'shared:form', 'shared:ui'],
+    'type:containers': ['type:*', 'shared:data', 'shared:ui'],
+    shared: 'shared',
   },
 };

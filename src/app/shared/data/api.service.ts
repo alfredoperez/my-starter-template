@@ -1,47 +1,43 @@
 import { inject } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ListResponse, Pagination, RequestOptions } from './api.models';
-import { lastValueFrom, map, Observable, tap } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import {
   injectQuery,
   injectQueryClient,
-  keepPreviousData,
-} from '@ngneat/query';
+} from '@tanstack/angular-query-experimental';
 
 export abstract class ApiService<T> {
   #httpClient = inject(HttpClient);
-  #query = injectQuery();
+  // #query = injectQuery({});
   #queryClient = injectQueryClient();
 
   protected constructor(private entityName: string) {}
 
-  public fetchPage(
+  public async fetchPage(
     requestOptions?: Partial<RequestOptions>
-  ): Observable<ListResponse<T>> {
-    return this.request<Array<T>>('GET', {
+  ): Promise<ListResponse<T>> {
+    const result = await this.request<Array<T>>('GET', {
       ...requestOptions,
       observe: 'response',
-    }).pipe(
-      map((res) =>
-        this.mapListResponse(
-          res as unknown as HttpResponse<T>,
-          requestOptions?.pagination
-        )
-      )
+    });
+    return this.mapListResponse(
+      result as unknown as HttpResponse<T>,
+      requestOptions?.pagination
     );
   }
 
   public fetchById(
     id: number,
     requestOptions?: Partial<RequestOptions>
-  ): Observable<T> {
+  ): Promise<T> {
     return this.request('GET', requestOptions, undefined, id);
   }
 
   public create(
     body: Partial<T>,
     requestOptions?: Partial<RequestOptions>
-  ): Observable<T | null> {
+  ): Promise<T | null> {
     return this.request('POST', requestOptions, body);
   }
 
@@ -49,7 +45,7 @@ export abstract class ApiService<T> {
     id: number,
     body: Partial<T>,
     requestOptions?: Partial<RequestOptions>
-  ): Observable<T> {
+  ): Promise<T> {
     return this.request('PATCH', requestOptions, body, id);
   }
 
@@ -57,32 +53,23 @@ export abstract class ApiService<T> {
     console.log({ options });
     const { searchQuery, pagination, orderDirection, orderBy } = options;
 
-    return this.#query({
-      staleTime: options?.staleTime || 0,
+    return injectQuery(() => ({
       // select: options?.select,
+      // placeholderData: keepPreviousData,
+      staleTime: options?.staleTime || 0,
       queryKey: [
         this.entityName,
         { searchQuery, pagination, orderDirection, orderBy },
       ],
-      placeholderData: keepPreviousData,
-      queryFn: () => {
-        return this.fetchPage(options).pipe(
-          tap((listResponse) => {
-            if (!(listResponse.hasMore && pagination?.page !== undefined)) {
-              return;
-            }
-            //  this.prefetchPage(pagination.page + 1, options);
-          })
-        );
-      },
-    }).result$;
+      queryFn: async () => await this.fetchPage(options),
+    }));
   }
 
   protected prefetchPage(
     nextPage: number,
     options: Partial<RequestOptions> = {}
   ) {
-    const { searchQuery, pagination, orderDirection } = options;
+    const { searchQuery, pagination, orderDirection, orderBy } = options;
 
     if (!pagination) {
       return;
@@ -90,9 +77,12 @@ export abstract class ApiService<T> {
     pagination.page = nextPage;
 
     return this.#queryClient.prefetchQuery({
-      queryKey: [this.entityName, { pagination, searchQuery }],
+      queryKey: [
+        this.entityName,
+        { pagination, searchQuery, orderDirection, orderBy },
+      ],
       queryFn: () => {
-        return lastValueFrom(this.fetchPage(options));
+        return this.fetchPage(options);
       },
     });
   }
@@ -102,11 +92,13 @@ export abstract class ApiService<T> {
     options?: Partial<RequestOptions>,
     body?: unknown,
     id?: number
-  ): Observable<T> {
-    return this.#httpClient.request(
-      method,
-      this.getUrl(id),
-      this.getOptions(options, body)
+  ): Promise<T> {
+    return lastValueFrom(
+      this.#httpClient.request(
+        method,
+        this.getUrl(id),
+        this.getOptions(options, body)
+      )
     );
   }
 
@@ -118,11 +110,12 @@ export abstract class ApiService<T> {
   private getOptions(options?: Partial<RequestOptions>, body?: unknown) {
     let params = {};
     if (options && options.pagination) {
-      const { limit, page, sort, order } = options.pagination;
+      const { orderBy, orderDirection } = options;
+      const { limit, page } = options.pagination;
       const paginationParams = {
         _limit: limit?.toString(),
-        _page: (page ? page - 1 : 0).toString(),
-        _sort: `${order === 'ASC' ? '' : '-'}${sort}`,
+        _page: (page ? page : 0).toString(),
+        _sort: `${orderDirection === 'ASC' ? '' : '-'}${orderBy}`,
       };
 
       params = { ...paginationParams };
@@ -142,8 +135,11 @@ export abstract class ApiService<T> {
     if (!response.headers) {
       return {} as ListResponse<T>;
     }
-    const total = Number(response.headers.get('X-Total-Count'));
+    // TODO: Find out why this is not working in the JSON-Server
+    // const total = Number(response.headers.get('X-Total-Count'));
+    const total = 100;
     let hasMore = false;
+
     if (pagination) {
       const { limit, page } = pagination;
       if (limit && page) {

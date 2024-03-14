@@ -2,10 +2,6 @@ export interface Pagination {
   limit: number;
 
   page: number;
-
-  order: 'ASC' | 'DESC';
-
-  sort: string;
 }
 
 export interface RequestOptions {
@@ -50,7 +46,7 @@ export interface ListResponse<T> {
   /**
    * The list of items
    */
-  items: T[];
+  items: Array<T>;
 
   /**
    * If there are more elements to load

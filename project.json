@@ -1,23 +1,32 @@
 {
-  "name": "angular-starter-template",
+  "name": "my-starter-template",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "angular-starter-template",
+  "prefix": "my-starter-template",
   "sourceRoot": "./src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
-        "outputPath": "dist/angular-starter-template",
+        "outputPath": "dist/my-starter-template",
         "index": "./src/index.html",
         "browser": "./src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "./tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["./src/favicon.ico", "./src/assets"],
-        "styles": ["./src/styles.scss"],
+        "assets": [
+          "./src/favicon.ico",
+          "./src/assets"
+        ],
+        "styles": [
+          "./src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -48,10 +57,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "angular-starter-template:build:production"
+          "buildTarget": "my-starter-template:build:production"
         },
         "development": {
-          "buildTarget": "angular-starter-template:build:development"
+          "buildTarget": "my-starter-template:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -59,14 +68,14 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "angular-starter-template:build"
+        "buildTarget": "my-starter-template:build"
       }
     },
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "angular-starter-template:build",
-        "staticFilePath": "dist/angular-starter-template/browser"
+        "buildTarget": "my-starter-template:build",
+        "staticFilePath": "dist/my-starter-template/browser"
       }
     }
   }

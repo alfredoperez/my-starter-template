@@ -1,25 +1,17 @@
 import { Component } from '@angular/core';
 import { PageContainerComponent } from './shared/ui';
-import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { AngularQueryDevtools } from '@tanstack/angular-query-devtools-experimental';
 
 @Component({
   standalone: true,
-  imports: [PageContainerComponent, RippleModule],
+  imports: [PageContainerComponent, RippleModule, AngularQueryDevtools],
   selector: 'starter-root',
   template: `
-   <div class="layout-container">
-   
-   <button 
-          pButton
-          pRipple
-          class="p-button-secondary"
-      
-          label="Add User"
-        ></button>
-   <page-container/>
-   
-</div>
-  `,
+      <div class="layout-container">
+        <angular-query-devtools initialIsOpen/>
+        <page-container/>
+      </div>
+    `,
 })
 export class AppComponent {}

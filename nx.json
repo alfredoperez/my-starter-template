@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -23,8 +26,13 @@
   "targetDefaults": {
     "@angular-devkit/build-angular:application": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     }
   },
   "plugins": [
@@ -73,12 +81,16 @@
       "prefix": ""
     }
   },
-  "defaultProject": "angular-starter-template",
+  "defaultProject": "my-starter-template",
   "nxCloudAccessToken": "ODFkY2YwZmUtMjIzOS00YTcyLWI1MDAtYzAzMzA5NWMyOWEwfHJlYWQtd3JpdGU=",
   "tasksRunnerOptions": {
     "default": {
+      "runner": "nx-cloud",
       "options": {
-        "cacheableOperations": ["build-storybook"]
+        "cacheableOperations": [
+          "build-storybook"
+        ],
+        "accessToken": "MzY3ZDY5YWEtYzE4Zi00OWQ0LTg2MWQtMGRjYzA0ODIzOWIxfHJlYWQtd3JpdGU="
       }
     }
   }
