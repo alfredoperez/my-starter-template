@@ -71,16 +71,26 @@
       "linter": "eslint",
       "style": "scss",
       "unitTestRunner": "jest"
+    },
+    "@nx/angular:component": {
+      "style": "scss",
+      "skipTests": true,
+      "inlineStyle": true,
+      "inlineTemplate": true,
+      "changeDetection": "OnPush",
+      "prefix": ""
     }
   },
-  "defaultProject": "angular-starter-template",
+  "defaultProject": "my-starter-template",
   "nxCloudAccessToken": "ODFkY2YwZmUtMjIzOS00YTcyLWI1MDAtYzAzMzA5NWMyOWEwfHJlYWQtd3JpdGU=",
   "tasksRunnerOptions": {
     "default": {
+      "runner": "nx-cloud",
       "options": {
         "cacheableOperations": [
           "build-storybook"
-        ]
+        ],
+        "accessToken": "MzY3ZDY5YWEtYzE4Zi00OWQ0LTg2MWQtMGRjYzA0ODIzOWIxfHJlYWQtd3JpdGU="
       }
     }
   }

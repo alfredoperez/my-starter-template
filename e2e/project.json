@@ -5,5 +5,7 @@
   "sourceRoot": "e2e/src",
   "targets": {},
   "tags": [],
-  "implicitDependencies": ["angular-starter-template"]
+  "implicitDependencies": [
+    "my-starter-template"
+  ]
 }

@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { PageContainerComponent } from './shared/ui';
+import { RippleModule } from 'primeng/ripple';
+import { AngularQueryDevtools } from '@tanstack/angular-query-devtools-experimental';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
-  selector: 'angular-starter-template-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  imports: [PageContainerComponent, RippleModule, AngularQueryDevtools],
+  selector: 'starter-root',
+  template: `
+      <div class="layout-container">
+        <angular-query-devtools initialIsOpen/>
+        <page-container/>
+      </div>
+    `,
 })
-export class AppComponent {
-  title = 'angular-starter-template';
-}
+export class AppComponent {}

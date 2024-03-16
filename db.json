@@ -1,0 +1,248 @@
+{
+  "companies": [
+    {
+      "name": "Apple",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "4d5b9a1d-597c-4d1e-82be-02757836b226"
+    },
+    {
+      "name": "Google",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "1ff5416e-8634-4b84-b5e1-1e16042cc8d8"
+    },
+    {
+      "name": "Microsoft",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "a4917a7f-19d1-46db-99ab-0e5ec92bc077"
+    }
+  ],
+  "departments": [
+    {
+      "name": "Accounting",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "7465"
+    },
+    {
+      "name": "Business Development",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "f411"
+    },
+    {
+      "name": "Engineering",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "6b44"
+    },
+    {
+      "name": "Human Resources",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "2646"
+    },
+    {
+      "name": "Legal",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "133f"
+    },
+    {
+      "name": "Marketing",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "3cc4"
+    },
+    {
+      "name": "Product Management",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "7cce"
+    },
+    {
+      "name": "Research and Development",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "6b71"
+    },
+    {
+      "name": "Sales",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "de31"
+    },
+    {
+      "name": "Services",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "23b1"
+    },
+    {
+      "name": "Support",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "6ef9"
+    },
+    {
+      "name": "Training",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "21a6"
+    }
+  ],
+  "titles": [
+    {
+      "name": "Account Coordinator",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "be3e"
+    },
+    {
+      "name": "Account Executive",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "9ab6"
+    },
+    {
+      "name": "Account Representative I",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "8b35"
+    },
+    {
+      "name": "Account Representative II",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "8ed5"
+    },
+    {
+      "name": "Account Representative III",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "7c3a"
+    },
+    {
+      "name": "Account Representative IV",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "0f44"
+    },
+    {
+      "name": "Accountant I",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "1eb7"
+    },
+    {
+      "name": "Accountant II",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "2b81"
+    },
+    {
+      "name": "Accountant III",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "dfa2"
+    },
+    {
+      "name": "Accountant IV",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "71f3"
+    },
+    {
+      "name": "Accounting Assistant I",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "ea64"
+    },
+    {
+      "name": "Accounting Assistant II",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "e1de"
+    },
+    {
+      "name": "Accounting Assistant III",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "fdc3"
+    },
+    {
+      "name": "Accounting Assistant IV",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "d7f1"
+    },
+    {
+      "name": "Accounting Assistant V",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "8573"
+    },
+    {
+      "name": "Accounting Assistant VI",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "7404"
+    },
+    {
+      "name": "Accounting Assistant VII",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "40f8"
+    },
+    {
+      "name": "Accounting Assistant VIII",
+      "createdAt": "1/1/2023",
+      "updatedAt": "1/1/2023",
+      "id": "c27b"
+    }
+  ],
+  "users": [
+    {
+      "name": "Sari Dillway",
+      "age": 82,
+      "email": "sdillway0@ft.com",
+      "company": "Apple",
+      "title": "Desktop Support Technician",
+      "department": "Accounting",
+      "createdAt": "10/16/2023",
+      "updatedAt": "8/14/2023",
+      "id": "4d5b9a1d-597c-4d1e-82be-02757836b226"
+    },
+    {
+      "name": "Konstance Dawson",
+      "age": 84,
+      "email": "kdawson1@sakura.ne.jp",
+      "company": "Microsoft",
+      "title": "Assistant Media Planner",
+      "department": "Human Resources",
+      "createdAt": "8/1/2023",
+      "updatedAt": "7/12/2023",
+      "id": "1ff5416e-8634-4b84-b5e1-1e16042cc8d8"
+    },
+    {
+      "name": "Kalindi Wonfar",
+      "age": 84,
+      "email": "kwonfar2@elegantthemes.com",
+      "company": "Apple",
+      "title": "Desktop Support Technician",
+      "department": "Marketing",
+      "createdAt": "2/16/2023",
+      "updatedAt": "1/14/2023",
+      "id": "80350fd5-525c-4a08-bd96-3c49fcacab16"
+    },
+    {
+      "id": "aae2",
+      "name": "Jane Doe",
+      "age": 22,
+      "createdAt": "2024-03-04T16:14:01.070Z",
+      "updatedAt": "2024-03-04T16:14:01.070Z"
+    }
+  ]
+}
