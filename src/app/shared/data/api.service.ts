@@ -1,21 +1,15 @@
-import { inject } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { ListResponse, Pagination, RequestOptions } from './api.models';
+import { inject } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import {
-  injectQuery,
-  injectQueryClient,
-} from '@tanstack/angular-query-experimental';
+import { ListResponse, Pagination, RequestOptions } from './api.models';
 
 export abstract class ApiService<T> {
   #httpClient = inject(HttpClient);
-  // #query = injectQuery({});
-  #queryClient = injectQueryClient();
 
   protected constructor(private entityName: string) {}
 
   public async fetchPage(
-    requestOptions?: Partial<RequestOptions>
+    requestOptions?: Partial<RequestOptions>,
   ): Promise<ListResponse<T>> {
     const result = await this.request<Array<T>>('GET', {
       ...requestOptions,
@@ -23,86 +17,48 @@ export abstract class ApiService<T> {
     });
     return this.mapListResponse(
       result as unknown as HttpResponse<T>,
-      requestOptions?.pagination
+      requestOptions?.pagination,
     );
   }
 
   public fetchById(
-    id: number,
-    requestOptions?: Partial<RequestOptions>
+    id: string,
+    requestOptions?: Partial<RequestOptions>,
   ): Promise<T> {
     return this.request('GET', requestOptions, undefined, id);
   }
 
   public create(
     body: Partial<T>,
-    requestOptions?: Partial<RequestOptions>
+    requestOptions?: Partial<RequestOptions>,
   ): Promise<T | null> {
     return this.request('POST', requestOptions, body);
   }
 
   public update(
-    id: number,
+    id: string,
     body: Partial<T>,
-    requestOptions?: Partial<RequestOptions>
+    requestOptions?: Partial<RequestOptions>,
   ): Promise<T> {
     return this.request('PATCH', requestOptions, body, id);
-  }
-
-  public queryPage(options: Partial<RequestOptions>) {
-    console.log({ options });
-    const { searchQuery, pagination, orderDirection, orderBy } = options;
-
-    return injectQuery(() => ({
-      // select: options?.select,
-      // placeholderData: keepPreviousData,
-      staleTime: options?.staleTime || 0,
-      queryKey: [
-        this.entityName,
-        { searchQuery, pagination, orderDirection, orderBy },
-      ],
-      queryFn: async () => await this.fetchPage(options),
-    }));
-  }
-
-  protected prefetchPage(
-    nextPage: number,
-    options: Partial<RequestOptions> = {}
-  ) {
-    const { searchQuery, pagination, orderDirection, orderBy } = options;
-
-    if (!pagination) {
-      return;
-    }
-    pagination.page = nextPage;
-
-    return this.#queryClient.prefetchQuery({
-      queryKey: [
-        this.entityName,
-        { pagination, searchQuery, orderDirection, orderBy },
-      ],
-      queryFn: () => {
-        return this.fetchPage(options);
-      },
-    });
   }
 
   protected request<T>(
     method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
     options?: Partial<RequestOptions>,
     body?: unknown,
-    id?: number
+    id?: string,
   ): Promise<T> {
     return lastValueFrom(
       this.#httpClient.request(
         method,
         this.getUrl(id),
-        this.getOptions(options, body)
-      )
+        this.getOptions(options, body),
+      ),
     );
   }
 
-  private getUrl(id?: number) {
+  private getUrl(id?: string) {
     const idPath = !id ? '' : `/${id}`;
     return `http://localhost:3000/${this.entityName}${idPath}`;
   }
@@ -130,7 +86,7 @@ export abstract class ApiService<T> {
 
   private mapListResponse(
     response: HttpResponse<unknown>,
-    pagination?: Partial<Pagination>
+    pagination?: Partial<Pagination>,
   ): ListResponse<T> {
     if (!response.headers) {
       return {} as ListResponse<T>;

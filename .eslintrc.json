@@ -102,6 +102,14 @@
       "extends": [
         "plugin:@softarc/sheriff/default"
       ]
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+
+        "extends": ["plugin:@tanstack/eslint-plugin-query/recommended"]
+
     }
   ]
 }
