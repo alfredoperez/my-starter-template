@@ -1,23 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-
-import {
-  injectMutation,
-  injectQueryClient,
-} from '@tanstack/angular-query-experimental';
+import { injectQueryClient } from '@tanstack/angular-query-experimental';
 import { ButtonModule } from 'primeng/button';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { KeyFilterModule } from 'primeng/keyfilter';
-
-import { User, UsersApiService } from '@my/users/data';
+import { User, usersQuery } from '@my/users/data';
 
 @Component({
   selector: 'manage-users-modal',
@@ -63,24 +64,41 @@ import { User, UsersApiService } from '@my/users/data';
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ManageUsersDialogComponent {
+export class ManageUsersDialogComponent implements OnInit {
   #queryClient = injectQueryClient();
   #dialogService = inject(DialogService);
-  enabled?: boolean;
+  #dialogRef = inject(DynamicDialogRef);
   usersFormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     age: new FormControl('', [Validators.required]),
   });
+  enabled?: boolean;
 
-  usersApiService = inject(UsersApiService);
+  #id = signal('');
 
-  userMutation = injectMutation(() => ({
-    mutationKey: ['createUser'],
-    onSuccess: () => {
-      this.#queryClient.invalidateQueries({ queryKey: ['users'] });
-    },
-    mutationFn: (user: User) => this.usersApiService.create(user),
-  }));
+  queryById = usersQuery.details(this.#id);
+
+  //   effect(() => {
+  //
+  // });
+
+  // usersApiService = inject(UsersApiService);
+
+  // userMutation = injectMutation(() => ({
+  //   mutationKey: ['createUser'],
+  //   onSuccess: () => {
+  //     this.#queryClient.invalidateQueries({ queryKey: ['users'] });
+  //   },
+  //   mutationFn: (user: User) => this.usersApiService.create(user),
+  // }));
+
+  public ngOnInit(): void {
+    const id = '';
+
+    const dialogId = this.#dialogService.getInstance(this.#dialogRef).id;
+    console.log({ dialogId });
+    this.#id.set(id);
+  }
 
   public onSaveUser() {
     if (this.usersFormGroup === undefined || this.usersFormGroup.invalid) {
@@ -96,7 +114,7 @@ export class ManageUsersDialogComponent {
       createdAt: new Date(),
       updatedAt: new Date(),
     } as unknown as User;
-    this.userMutation.mutate(user);
+    // this.userMutation.mutate(user);
 
     this.#dialogService.dialogComponentRefMap.forEach((dialog) =>
       dialog.destroy(),

@@ -1,2 +1,2 @@
-export * from './api.service';
+export * from './functional-api.service';
 export * from './api.models';
