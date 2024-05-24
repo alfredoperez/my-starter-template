@@ -12,24 +12,18 @@ import { User, usersQuery } from '@my/users/data';
   imports: [CommonModule, AgGridModule],
   providers: [],
   template: `
-    <div
-      class="flex flex-column flex-grow h-full fadein animation-duration-1000 gap-4"
-    >
-      <div class="flex justify-content-between">
+    <div class="flex h-full w-full flex-col gap-6 ">
+      <div class="flex  items-center justify-between gap-6">
         <h1 class="text-2xl font-semibold">Users</h1>
-        <button
-          class="p-button-secondary m-l-8"
-          (click)="addUser()"
-          label="Add User"
-        ></button>
+        <button class="btn" (click)="addUser()">Add User</button>
       </div>
-      <div class="card p-0 mt-4">
+      <div class="">
         @if (usersPageQuery.isPending()) {
           <p>Loading...</p>
         } @else if (usersPageQuery.isError()) {
           <span> Error</span>
         } @else {
-          <div class="items-center">
+          <div class="">
             <ag-grid-angular
               class="ag-theme-alpine border-round"
               [rowData]="usersPageQuery.data()?.items"
@@ -43,7 +37,7 @@ import { User, usersQuery } from '@my/users/data';
               <!--                [rows]="20"-->
               <!--                [totalRecords]="usersPageQuery.data()?.total || 0"-->
               <!--                (onPageChange)="onPageChange($event)"-->
-              />
+              <!--              />-->
             </div>
           </div>
         }

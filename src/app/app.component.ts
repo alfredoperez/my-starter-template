@@ -8,7 +8,7 @@ import { PageContainerComponent } from './shared/ui';
   imports: [PageContainerComponent, AngularQueryDevtools],
   selector: 'starter-root',
   template: `
-    <div class="layout-container">
+    <div>
       <angular-query-devtools initialIsOpen />
       <page-container />
     </div>

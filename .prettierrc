@@ -3,7 +3,8 @@
   "embeddedLanguageFormatting": "auto",
   "plugins": [
     "prettier-plugin-organize-attributes",
-    "@trivago/prettier-plugin-sort-imports"
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
   ],
   "attributeGroups": [
     "^(id|name)$",
