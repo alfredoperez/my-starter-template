@@ -1,14 +1,2 @@
 /* You can add global styles to this file, and also import other style files */
-$gutter: 1rem;
 
-/* Layout */
-@import 'assets/layout/styles/layout/layout.scss';
-
-/* PrimeNG */
-@import 'primeng/resources/primeng.css';
-@import 'primeflex/primeflex.scss';
-@import 'primeicons/primeicons.css';
-
-/* Ag-Grid */
-@import 'ag-grid-community/styles/ag-grid.css';
-@import 'ag-grid-community/styles/ag-theme-alpine.css';
