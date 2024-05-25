@@ -9,15 +9,29 @@
     "importHelpers": true,
     "target": "es2022",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@my/shared/data": ["src/app/shared/data/index.ts"],
-      "@my/shared/ui": ["src/app/shared/ui/index.ts"],
-      "@my/users/containers": ["src/app/users/containers/index.ts"],
-      "@my/users/data": ["src/app/users/data/index.ts"]
+      "@my/shared/data": [
+        "src/app/shared/data/index.ts"
+      ],
+      "@my/shared/ui": [
+        "src/app/shared/ui/index.ts"
+      ],
+      "@my/shared/utils": [
+        "src/app/shared/utils/index.ts"
+      ],
+      "@my/users/containers": [
+        "src/app/users/containers/index.ts"
+      ],
+      "@my/users/data": [
+        "src/app/users/data/index.ts"
+      ]
     },
     "useDefineForClassFields": false,
     "esModuleInterop": true,
@@ -45,7 +59,10 @@
     }
   ],
   "compileOnSave": false,
-  "exclude": ["node_modules", "tmp"],
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

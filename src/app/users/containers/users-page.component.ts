@@ -3,19 +3,20 @@ import { Component, computed, signal } from '@angular/core';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, RowClickedEvent } from 'ag-grid-community';
 import { RequestOptions } from '@my/shared/data';
+import { PaginationComponent } from '@my/shared/ui';
 import { User, usersQuery } from '@my/users/data';
-
+import { ButtonComponent } from '../../shared/ui/button/button.component';
 
 @Component({
   selector: 'users-page',
   standalone: true,
-  imports: [CommonModule, AgGridModule],
+  imports: [CommonModule, AgGridModule, ButtonComponent, PaginationComponent],
   providers: [],
   template: `
     <div class="flex h-full w-full flex-col gap-6 ">
       <div class="flex  items-center justify-between gap-6">
         <h1 class="text-2xl font-semibold">Users</h1>
-        <button class="btn" (click)="addUser()">Add User</button>
+        <ui-button type="primary" (click)="addUser()">Add User</ui-button>
       </div>
       <div class="">
         @if (usersPageQuery.isPending()) {
@@ -32,6 +33,7 @@ import { User, usersQuery } from '@my/users/data';
               style="width: 100%; height: 400px;"
             />
             <div class="flex-auto">
+              <ui-pagination [totalItems]="usersPageQuery.data()?.total || 0" />
               <!--              <p-paginator-->
               <!--                [first]="1"-->
               <!--                [rows]="20"-->
